@@ -314,3 +314,26 @@ var onKeyUp = function (event) {
 document.addEventListener('keydown', onKeyDown, false);
 document.addEventListener('keyup', onKeyUp, false);
 
+document.getElementById("info-display-btn").addEventListener("click", function(){
+  var toggleBtn = document.getElementById("info-display-btn");
+  var x = document.getElementById("info-content");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+    toggleBtn.innerHTML = "[close]";
+  } else {
+    x.style.display = "none";
+    toggleBtn.innerHTML = "[view controls]";
+  }
+});
+
+document.getElementById("author-display-btn").addEventListener("click", function(){
+  var toggleBtn = document.getElementById("author-display-btn");
+  var x = document.getElementById("author-info-content");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+    toggleBtn.innerHTML = "[close]";
+  } else {
+    x.style.display = "none";
+    toggleBtn.innerHTML = "[view authors]";
+  }
+});

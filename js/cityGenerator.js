@@ -86,6 +86,16 @@ function AddRoads(x, y, z, width) {
   }
 }
 
+function hasBuilding(x, z){
+  var r = true;
+  for (var b = 0; b < buildingLocations.length; b++) {
+    if (buildingLocations[b].buildingX == x && buildingLocations[b].buildingZ == z) {
+      r = false;
+    }
+  }
+  return r;
+}
+
 function AddBuilding(startingX, startingZ, randomX, randomZ) {
   var buildingWidth = 1.5 + (Math.random() * 1);
   var buildingHeight = 1.2 + (Math.random() * 1.8);
@@ -94,13 +104,7 @@ function AddBuilding(startingX, startingZ, randomX, randomZ) {
   var buildingY = (buildingHeight / 2);
   var buildingZ = (startingZ + randomZ) * 20 * 5;
 
-  var freeSpace = true;
-
-  for (var b = 0; b < buildingLocations.length; b++) {
-    if (buildingLocations[b].buildingX == buildingX && buildingLocations[b].buildingZ == buildingZ) {
-      freeSpace = false;
-    }
-  }
+  var freeSpace = hasBuilding(buildingX, buildingZ);
 
   if (freeSpace) {
     buildingLocations.push({
@@ -110,54 +114,56 @@ function AddBuilding(startingX, startingZ, randomX, randomZ) {
 
     var isWideRand = Math.floor(Math.random() * 30) + 1;
 
+    var isParkRand = Math.floor(Math.random() * 30) + 1;
+
     var wideBuildingWidth = 0;
     var wideBuildingDepth = 0;
 
-    if (isWideRand < 5) {
-      var freeSpaceAdj = true;
+    if(isParkRand < 12){
+      for (var i = 0; i < 2; i++) {
+        for (var k = 0; k < 3; k++) {
+          if(hasBuilding(buildingX+(i*100),buildingZ+(k*100))){   
+            var newZ = buildingZ+(k*100);  
+            var newX = buildingX+(i*100);   
+            buildingLocations.push({newX,newZ});
+          }
+        }
+      }
+    }else{
+      if (isWideRand < 5) {
+        var freeSpaceAdj = hasBuilding(buildingX + 100,buildingZ);
 
-      for (var b = 0; b < buildingLocations.length; b++) {
-        if (buildingLocations[b].buildingX == buildingX + 100 && buildingLocations[b].buildingZ == buildingZ) {
-          freeSpaceAdj = false;
+        if (freeSpaceAdj) {
+          wideBuildingWidth = buildingWidth;
+          buildingX += 100;
+
+          buildingLocations.push({
+            buildingX,
+            buildingZ
+          });
+          buildingX -= 50;
+        }
+      } else if (isWideRand > 25) {
+        var freeSpaceAdj = hasBuilding(buildingX,buildingZ + 100);
+
+        if (freeSpaceAdj) {
+          wideBuildingDepth = buildingWidth;
+          buildingZ += 100;
+
+          buildingLocations.push({
+            buildingX,
+            buildingZ
+          });
+          buildingZ -= 50;
         }
       }
 
-      if (freeSpaceAdj) {
-        wideBuildingWidth = buildingWidth;
-        buildingX += 100;
-
-        buildingLocations.push({
-          buildingX,
-          buildingZ
-        });
-        buildingX -= 50;
-      }
-    } else if (isWideRand > 25) {
-      var freeSpaceAdj = true;
-
-      for (var b = 0; b < buildingLocations.length; b++) {
-        if (buildingLocations[b].buildingZ == buildingZ + 100 && buildingLocations[b].buildingX == buildingX) {
-          freeSpaceAdj = false;
-        }
-      }
-
-      if (freeSpaceAdj) {
-        wideBuildingDepth = buildingWidth;
-        buildingZ += 100;
-
-        buildingLocations.push({
-          buildingX,
-          buildingZ
-        });
-        buildingZ -= 50;
-      }
+      var baseColor = 0.2 + (Math.random() * 0.8);
+      AddBuild(Math.floor((Math.random() * 8) + 1), baseColor - (Math.random() / 10), baseColor - (Math.random() /
+          10), baseColor - (Math.random() / 10), buildingWidth + wideBuildingWidth, buildingHeight,
+        buildingWidth + wideBuildingDepth, buildingX, buildingY,
+        buildingZ);
     }
-
-    var baseColor = 0.2 + (Math.random() * 0.8);
-    AddBuild(Math.floor((Math.random() * 8) + 1), baseColor - (Math.random() / 10), baseColor - (Math.random() /
-        10), baseColor - (Math.random() / 10), buildingWidth + wideBuildingWidth, buildingHeight,
-      buildingWidth + wideBuildingDepth, buildingX, buildingY,
-      buildingZ);
   }
 }
 

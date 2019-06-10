@@ -1,4 +1,3 @@
-
 var gui;
 var params = {
   selected_building: "empty",

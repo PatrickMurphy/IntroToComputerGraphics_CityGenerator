@@ -1,6 +1,6 @@
 
 body {
-  font: 14px Lucida Grande, sans-serif;
+  font: 12px Lucida Grande, sans-serif;
   text-shadow: #000000 2px 2px 10px;
   color: #ffffff;
   background-color: #000000;
@@ -15,6 +15,7 @@ canvas {
 
 h1 {
   margin-top: 0px;
+  font-size:18px;
 }
 
 #info-top {

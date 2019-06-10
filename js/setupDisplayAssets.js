@@ -1,4 +1,3 @@
-// TODO: clean this up with array / loop
 //Skybox
 var r1 = "./assets/skybox/1/";
 var urls1 = [r1 + "FieryNebula_front5.jpg", r1 + "FieryNebula_back6.jpg",
@@ -43,41 +42,23 @@ var urls9 = [r9 + "posx.png", r9 + "negx.png",
 ];
 var textureCube9 = new THREE.CubeTextureLoader().load(urls9);
 
-var TextureL1 = new THREE.TextureLoader().load("./assets/img-ground/hills_dn.png");
-TextureL1.wrapS = TextureL1.wrapT = THREE.RepeatWrapping;
-TextureL1.repeat.set(350, 350);
+function loadTexture(url,size){
+  size = size || 350;
+  var T = new THREE.TextureLoader().load(url);
+  T.wrapS = T.wrapT = THREE.RepeatWrapping;
+  T.repeat.set(size, size);
+  return T;
+}
 
-var TextureL2 = new THREE.TextureLoader().load("./assets/img-ground/1.jpg");
-TextureL2.wrapS = TextureL2.wrapT = THREE.RepeatWrapping;
-TextureL2.repeat.set(350, 350);
-
-var TextureL3 = new THREE.TextureLoader().load("./assets/img-ground/2.jpg");
-TextureL3.wrapS = TextureL3.wrapT = THREE.RepeatWrapping;
-TextureL3.repeat.set(350, 350);
-
-var TextureL4 = new THREE.TextureLoader().load("./assets/img-ground/3.jpg");
-TextureL4.wrapS = TextureL4.wrapT = THREE.RepeatWrapping;
-TextureL4.repeat.set(350, 350);
-
-var TextureL5 = new THREE.TextureLoader().load("./assets/img-ground/4.jpg");
-TextureL5.wrapS = TextureL5.wrapT = THREE.RepeatWrapping;
-TextureL5.repeat.set(350, 350);
-
-var TextureL6 = new THREE.TextureLoader().load("./assets/img-ground/5.jpg");
-TextureL6.wrapS = TextureL6.wrapT = THREE.RepeatWrapping;
-TextureL6.repeat.set(550, 550);
-
-var TextureL7 = new THREE.TextureLoader().load("./assets/img-ground/6.jpg");
-TextureL7.wrapS = TextureL7.wrapT = THREE.RepeatWrapping;
-TextureL7.repeat.set(350, 350);
-
-var TextureL8 = new THREE.TextureLoader().load("./assets/img-ground/7.jpg");
-TextureL8.wrapS = TextureL8.wrapT = THREE.RepeatWrapping;
-TextureL8.repeat.set(350, 350);
-
-var TextureL9 = new THREE.TextureLoader().load("./assets/img-ground/8.jpg");
-TextureL9.wrapS = TextureL9.wrapT = THREE.RepeatWrapping;
-TextureL9.repeat.set(50, 50);
+var TextureL1 = loadTexture("./assets/img-ground/hills_dn.png");
+var TextureL2 = loadTexture("./assets/img-ground/1.jpg");
+var TextureL3 = loadTexture("./assets/img-ground/2.jpg");
+var TextureL4 = loadTexture("./assets/img-ground/3.jpg");
+var TextureL5 = loadTexture("./assets/img-ground/4.jpg");
+var TextureL6 = loadTexture("./assets/img-ground/5.jpg",550);
+var TextureL7 = loadTexture("./assets/img-ground/6.jpg");
+var TextureL8 = loadTexture("./assets/img-ground/7.jpg");
+var TextureL9 = loadTexture("./assets/img-ground/8.jpg",50);
 
 var baseMaterial = new THREE.MeshPhongMaterial({
   map: TextureL1,

@@ -1,9 +1,16 @@
+function getMouseLocation(){
+  var mouse = new THREE.Vector2;
+  mouse.x = (event.clientX / renderer.domElement.clientWidth) * 2 - 1;
+  mouse.y = -(event.clientY / renderer.domElement.clientHeight) * 2 + 1;
+  return mouse;
+}
+
+// function to handle mouse input
 function onDocumentMouseDown(event) {
   switch (event.button) {
-    case 0: //left
-      var mouse = new THREE.Vector2;
-      mouse.x = (event.clientX / renderer.domElement.clientWidth) * 2 - 1;
-      mouse.y = -(event.clientY / renderer.domElement.clientHeight) * 2 + 1;
+    case 0: //left mouse button
+      var mouse = getMouseLocation();
+
       if (event.clientX < blockedWidth) {
         raycaster.setFromCamera(mouse, camera);
 
@@ -28,16 +35,13 @@ function onDocumentMouseDown(event) {
         }
       }
       break;
-    case 1: //middle
+    case 1: //middle mouse button
       break;
-    case 2: //right
-      var mouse = new THREE.Vector2;
-      mouse.x = (event.clientX / renderer.domElement.clientWidth) * 2 - 1;
-      mouse.y = -(event.clientY / renderer.domElement.clientHeight) * 2 + 1;
+    case 2: //right mouse button
+      var mouse = getMouseLocation();
 
       selectedObject.material.color = selectedObjectColor;
       isSelected = false;
-
       break;
   }
 }
@@ -123,33 +127,30 @@ var onKeyUp = function (event) {
 document.addEventListener('keydown', onKeyDown, false);
 document.addEventListener('keyup', onKeyUp, false);
 
-var infoDispClicked = function(){
-  var toggleBtn = document.getElementById("info-display-btn");
-  var x = document.getElementById("info-content");
+// Code added by Patrick Murphy for opening and closing the info windows
+var dispClicked = function(ele1, ele2, title){
+  var toggleBtn = document.getElementById(ele1);
+  var x = document.getElementById(ele2);
   if (x.style.display === "none") {
     x.style.display = "block";
     toggleBtn.innerHTML = "[close]";
   } else {
     x.style.display = "none";
-    toggleBtn.innerHTML = "[view controls]";
-  }
-};
-
-var authorDispClicked = function(){
-  var toggleBtn = document.getElementById("author-display-btn");
-  var x = document.getElementById("author-info-content");
-  if (x.style.display === "none") {
-    x.style.display = "block";
-    toggleBtn.innerHTML = "[close]";
-  } else {
-    x.style.display = "none";
-    toggleBtn.innerHTML = "[view authors]";
+    toggleBtn.innerHTML = "[view " + title + "]";
   }
 };
 
 // auto hide info buttons
-infoDispClicked();
-authorDispClicked();
+if(settings.infowindows.autohide){
+  dispClicked("info-display-btn","info-content","controls");
+  dispClicked("author-display-btn","author-info-content","authors");
+}
 
-document.getElementById("info-display-btn").addEventListener("click", infoDispClicked);
-document.getElementById("author-display-btn").addEventListener("click", authorDispClicked);
+// add listeners
+document.getElementById("info-display-btn").addEventListener("click", function(){
+  dispClicked("info-display-btn","info-content","controls");
+});
+
+document.getElementById("author-display-btn").addEventListener("click", function(){
+  dispClicked("author-display-btn","author-info-content","authors");
+});

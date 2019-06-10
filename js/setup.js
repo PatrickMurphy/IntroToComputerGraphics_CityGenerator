@@ -7,6 +7,12 @@ var velocity = new THREE.Vector3();
 var direction = new THREE.Vector3();
 var prevTime = performance.now();
 
+var settings = {
+  infowindows:{
+    autohide:true
+  }
+};
+
 // state toggles for movement
 var moveForward = false;
 var moveBackward = false;

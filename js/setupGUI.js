@@ -21,6 +21,9 @@ var params = {
     keyboardControls.enabled = !keyboardControls.enabled;
   },
 
+  generateWater: function () {
+    GenerateWater(genSteps);
+  },
   generate: function () {
     GenerateCity(genSteps);
   },
@@ -120,7 +123,11 @@ function buildGui() {
   });
 
   var genBtn = generationFolder.add(params, 'generate');
-  genBtn.name("Generate New City!");
+  genBtn.name("Add City");
+  genBtn.domElement.parentElement.parentElement.classList.add("focus-btn");
+
+  //var genBtn1 = generationFolder.add(params, 'generateWater');
+  //genBtn1.name("Add Water");
 
   //Controller settings, for example whether or not to use first person controls
   var controlsFolder = gui.addFolder('Control Options');

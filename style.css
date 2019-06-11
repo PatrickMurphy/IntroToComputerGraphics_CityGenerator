@@ -18,6 +18,12 @@ h1 {
   font-size:18px;
 }
 
+.focus-btn {
+  background: #55aa55 !important;
+  font-weight: bold;
+  padding:2px;
+}
+
 #info-top {
   position: absolute;
   top: 0px;

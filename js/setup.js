@@ -9,7 +9,13 @@ var prevTime = performance.now();
 
 var settings = {
   infowindows:{
-    autohide:true
+    autohide:false,
+    authors:{
+      autohide:true
+    },
+    controls:{
+      autohide:false
+    }
   }
 };
 

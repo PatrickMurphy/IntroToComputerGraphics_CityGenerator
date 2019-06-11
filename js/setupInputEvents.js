@@ -141,9 +141,11 @@ var dispClicked = function(ele1, ele2, title){
 };
 
 // auto hide info buttons
-if(settings.infowindows.autohide){
+if(settings.infowindows.autohide || settings.infowindows.controls.autohide){
   dispClicked("info-display-btn","info-content","controls");
-  dispClicked("author-display-btn","author-info-content","authors");
+}
+if(settings.infowindows.autohide || settings.infowindows.authors.autohide){
+    dispClicked("author-display-btn","author-info-content","authors");
 }
 
 // add listeners

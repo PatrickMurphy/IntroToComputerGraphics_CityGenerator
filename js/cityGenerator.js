@@ -113,7 +113,6 @@ function AddBuilding(startingX, startingZ, randomX, randomZ) {
     });
 
     var isWideRand = Math.floor(Math.random() * 30) + 1;
-
     var isParkRand = Math.floor(Math.random() * 30) + 1;
 
     var wideBuildingWidth = 0;
@@ -244,4 +243,8 @@ function GenerateCity(steps) {
   for (var x = 0; x < steps; x++) {
     RandomWalk(0, 0, x, 5);
   }
+}
+
+function GenerateWater(steps){
+    // nothing yet
 }

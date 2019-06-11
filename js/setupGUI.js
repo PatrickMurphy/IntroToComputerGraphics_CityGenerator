@@ -83,11 +83,28 @@ function buildGui() {
   selectCheck();
 
 
+  var generationFolder = gui.addFolder('Generation Options');
+  generationFolder.open();
+
+  var genStepsController = generationFolder.add(params, 'walk_path_steps', 1, 60, 1);
+  genStepsController.name("Generation Steps");
+  genStepsController.onChange(function (val) {
+    genSteps = val;
+  });
+
+  var genBtn = generationFolder.add(params, 'generate');
+  genBtn.name("Add City");
+  genBtn.domElement.parentElement.parentElement.classList.add("focus-btn");
+
+  //var genBtn1 = generationFolder.add(params, 'generateWater');
+  //genBtn1.name("Add Water");
+
+
   var lightFolder = gui.addFolder('Light Options');
   lightFolder.open();
 
   var lightController = lightFolder.add(params, 'light_angle', 0, Math.PI * 2);
-  lightController.name("Angle");
+  lightController.name("Hour / Angle");
   lightController.onChange(function (val) {
     light.position.y = Math.sin(val) * 1000;
     light.position.x = Math.cos(val) * 1000;
@@ -104,7 +121,7 @@ function buildGui() {
 
 
   var cameraFolder = gui.addFolder('Camera Options');
-  cameraFolder.open();
+  //cameraFolder.open();
 
   var cameraSpeedController = cameraFolder.add(params, 'camera_rotate_speed', 0, 5, 0.1);
   cameraSpeedController.name("Rotate Speed");
@@ -113,21 +130,6 @@ function buildGui() {
   });
 
 
-  var generationFolder = gui.addFolder('Generation Options');
-  generationFolder.open();
-
-  var genStepsController = generationFolder.add(params, 'walk_path_steps', 1, 60, 1);
-  genStepsController.name("Generation Steps");
-  genStepsController.onChange(function (val) {
-    genSteps = val;
-  });
-
-  var genBtn = generationFolder.add(params, 'generate');
-  genBtn.name("Add City");
-  genBtn.domElement.parentElement.parentElement.classList.add("focus-btn");
-
-  //var genBtn1 = generationFolder.add(params, 'generateWater');
-  //genBtn1.name("Add Water");
 
   //Controller settings, for example whether or not to use first person controls
   var controlsFolder = gui.addFolder('Control Options');

@@ -133,26 +133,18 @@ var dispClicked = function(ele1, ele2, title){
   var x = document.getElementById(ele2);
   if (x.style.display === "none") {
     x.style.display = "block";
-    toggleBtn.innerHTML = "[close]";
+    toggleBtn.innerHTML = "[hide]";
   } else {
     x.style.display = "none";
-    toggleBtn.innerHTML = "[view " + title + "]";
+    toggleBtn.innerHTML = "[show " + title + "]";
   }
 };
 
 // auto hide info buttons
 if(settings.infowindows.autohide || settings.infowindows.controls.autohide){
-  dispClicked("info-display-btn","info-content","controls");
+  dispClicked("info-btn","info-content","info");
 }
-if(settings.infowindows.autohide || settings.infowindows.authors.autohide){
-    dispClicked("author-display-btn","author-info-content","authors");
-}
-
 // add listeners
-document.getElementById("info-display-btn").addEventListener("click", function(){
-  dispClicked("info-display-btn","info-content","controls");
-});
-
-document.getElementById("author-display-btn").addEventListener("click", function(){
-  dispClicked("author-display-btn","author-info-content","authors");
+document.getElementById("info-btn").addEventListener("click", function(){
+  dispClicked("info-btn","info-content","info");
 });

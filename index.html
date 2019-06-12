@@ -50,7 +50,8 @@
   <script src="js/vendor/dat.gui.min.js"></script>
   <!-- include the first person controls -->
   <script src="js/vendor/PointerLockControls.js"></script>
-
+  <!-- include performance stats -->
+  <script type="text/javascript" src="js/vendor/stats.min.js"></script>
   <!-- the styling that our site uses -->
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
@@ -59,13 +60,9 @@
   <!-- The main information panel, shown in the top-left -->
   <div id="info-top">
     <div id="info-content">
-      <h1>Procedural City Generator</h1>
+      <h3>Press the "Generate New" button to start!</h3>
 
-      <p><b>Press the <span class="focus-btn">"Add City"</span> button to start!</b></p>
-
-      <br>
-
-      <b>Camera Controls</b>
+      <h4>Camera Controls</h4>
       <ul>
         <li>Left Click + Drag to Rotate</li>
         <li>Right Click + Drag to Pan</li>
@@ -74,30 +71,25 @@
         <li>Left shift to fly down</li>
       </ul>
 
-      <b>Building Controls</b>
+      <h4>Building Controls</h4>
       <ul>
         <li>Left Click to select</li>
         <li>Right Click to de-select</li>
         <li>Left Click again to move the building</li>
       </ul>
-    </div>
-    <span id="info-display-btn" class="display-btn">[close]</span>
-  </div>
 
-  <!-- The 'Made By' information panel, shown in the bottom-left -->
-  <div id="info-bottom">
-    <div id="author-info-content">
-      <h1>Made By:</h1>
+      <a href="https://github.com/MHillier98/IntroToComputerGraphics_CityGenerator/graphs/contributors">
+        <h3>Made By:</h3>
+      </a>
       <ul>
         <li>Matthew Hillier</li>
         <li>Alex Munoz</li>
         <li>Josh Masangcay</li>
-        <li>Longyong Li</li>
         <li>Mitchell Sanderson</li>
-        <li>Patrick Murphy</li>
+        <li>Longyong Li</li>
       </ul>
     </div>
-    <span id="author-display-btn" class="display-btn">[close]</span>
+    <span id="info-btn" class="btn">[hide]</span>
   </div>
 
   <div id="info-bottom-right">
@@ -110,7 +102,9 @@
   <script type="text/javascript" src="js/setupDisplayAssets.js"></script>
   <script type="text/javascript" src="js/setupInputEvents.js"></script>
   <script type="text/javascript" src="js/setupGUI.js"></script>
-  <script type="text/javascript" src="js/CityGenerator.js"></script>
+  <script type="text/javascript" src="js/CityGenerator.js"></script> 
+  <!-- Show some stats -->
+  <script type="text/javascript" src="js/stats.js"></script>
   <script type="text/javascript" src="js/main.js"></script>
 </body>
 

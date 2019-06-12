@@ -1,7 +1,7 @@
 //create the scene
 var scene = new THREE.Scene();
 var ratio = window.innerWidth / window.innerHeight;
-var camera = new THREE.PerspectiveCamera(80, ratio, 4, 100000); // https://threejs.org/docs/#api/cameras/PerspectiveCamera
+var camera = new THREE.PerspectiveCamera(80, ratio, 4, 50000);
 
 var velocity = new THREE.Vector3();
 var direction = new THREE.Vector3();

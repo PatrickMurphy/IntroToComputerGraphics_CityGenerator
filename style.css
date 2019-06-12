@@ -18,6 +18,14 @@ h1 {
   font-size:18px;
 }
 
+ul {
+    list-style-type: square;
+}
+
+a {
+    color: #ffffff;
+}
+
 .focus-btn {
   background: #55aa55 !important;
   font-weight: bold;
@@ -56,11 +64,16 @@ h1 {
   z-index: 1;
 }
 
-ul {
-  list-style-type: square;
-}
-
 .display-btn {
   font-size: 8px;
   float:right;  
+}
+}
+
+.dg.main.a {
+    width: 330px !important;
+}
+
+.close-button {
+    width: 330px !important;
 }

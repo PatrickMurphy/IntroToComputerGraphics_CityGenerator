@@ -7,72 +7,71 @@ var params = {
     walk_path_steps: genSteps,
 
     day: function () {
-      //Make day
-
+        //Make day
     },
     night: function () {
-      //make night
+        //make night
     },
     firstPerson: function () {
-      camera.position.x = 0;
-      camera.position.y = 5;
-      camera.position.z = 0;
-      controls.target = new THREE.Vector3(10, 5, 0);
-      firstPersonMode = !firstPersonMode;
-      keyboardControls.enabled = !keyboardControls.enabled;
+        camera.position.x = 0;
+        camera.position.y = 5;
+        camera.position.z = 0;
+        controls.target = new THREE.Vector3(10, 5, 0);
+        firstPersonMode = !firstPersonMode;
+        keyboardControls.enabled = !keyboardControls.enabled;
     },
 
     generateWater: function () {
-      GenerateWater(genSteps);
+        GenerateWater(genSteps);
     },
     generate: function () {
-      GenerateCity(genSteps);
+        GenerateCity(genSteps);
     },
     generate1: function () { //match the skybox
-      scene.background = textureCube1;
+        scene.background = textureCube1;
     },
     generate2: function () {
-      scene.background = textureCube2;
+        scene.background = textureCube2;
     },
     generate5: function () {
-      scene.background = textureCube5;
+        scene.background = textureCube5;
     },
     generate7: function () {
-      scene.background = textureCube7;
+        scene.background = textureCube7;
     },
     generate8: function () {
-      scene.background = textureCube8;
+        scene.background = textureCube8;
     },
     generate9: function () {
-      scene.background = textureCube9;
+        scene.background = textureCube9;
     },
 
     generate11: function () {
-      textureT(1); //match the ground
+        textureT(1); //match the ground
     },
     generate22: function () {
-      textureT(2);
+        textureT(2);
     },
     generate33: function () {
-      textureT(3);
+        textureT(3);
     },
     generate44: function () {
-      textureT(4);
+        textureT(4);
     },
     generate55: function () {
-      textureT(5);
+        textureT(5);
     },
     generate66: function () {
-      textureT(6);
+        textureT(6);
     },
     generate77: function () {
-      textureT(7);
+        textureT(7);
     },
     generate88: function () {
-      textureT(8);
+        textureT(8);
     },
     generate99: function () {
-      textureT(9);
+        textureT(9);
     },
 }
 
@@ -227,8 +226,7 @@ function selectCheck() {
 
         var files = [1, 2, 3, 4, 5, 6, 7, 8];
 
-        var buildingController = buildingFolder.add(params, 'selected_building', ['Model 1', 'Model 2', 'Model 3',
-            'Model 4', 'Model 5', 'Model 6', 'Model 7', 'Model 8'
+        var buildingController = buildingFolder.add(params, 'selected_building', ['Model 1', 'Model 2', 'Model 3', 'Model 4', 'Model 5', 'Model 6', 'Model 7', 'Model 8'
         ]).listen();
         buildingController.name("Building Model");
 

@@ -60,9 +60,9 @@ function AddRoads(x, y, z, width) {
             x,
             z
         });
-        
+
         AddLightPole(x, y, z);
-        
+
         for (var w = 0; w < width; w++) {
             AddSquareRoad((w + x) * roadSize, y, z * roadSize);
         }
@@ -211,11 +211,9 @@ function AddBuild(model, r, g, b, width, height, depth, xTra, yTra, zTra) {
         sca.makeScale(2 * size.length() * width, 2 * size.length() * height, 2 * size.length() * depth);
 
         combined.multiply(sca);
-
         mesh.applyMatrix(combined);
         mesh.castShadow = true;
         mesh.receiveShadow = true;
-
         mesh.position.x = xTra;
         mesh.position.y = yTra;
         mesh.position.z = zTra;

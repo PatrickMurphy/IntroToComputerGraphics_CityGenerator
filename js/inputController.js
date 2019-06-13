@@ -32,7 +32,7 @@ function getMouseLocation(){
 function onDocumentMouseDown(event) {
     switch (event.button) {
         case 0: //left
-            var mouse getMouseLocation(); // use helper function to eliminate redundant coude
+            var mouse = getMouseLocation(); // use helper function to eliminate redundant coude
 
             if (event.clientX < blockedWidth) {
                 raycaster.setFromCamera(mouse, camera);

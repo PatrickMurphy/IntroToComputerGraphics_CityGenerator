@@ -14,6 +14,9 @@ var settings = {
   },
   infowindows:{
     autohide:false
+  },
+  generation: {
+    addParks: false
   }
 };
 

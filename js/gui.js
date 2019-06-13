@@ -75,6 +75,13 @@ var params = {
     },
 }
 
+  gui = new dat.GUI({
+    name: "City Options"
+  });
+
+  selectCheck();
+
+
 function updateLight(val, light, ambientLight, params) {
     if (val >= Math.PI * 2) {
         val = 0;
@@ -94,14 +101,6 @@ function updateLight(val, light, ambientLight, params) {
         ambientLight.intensity = 0.1 + 0.2 * lightVal;
     }
 }
-
-function buildGui() {
-  gui = new dat.GUI({
-    name: "City Options"
-  });
-
-  selectCheck();
-
 
   var generationFolder = gui.addFolder('Generation Options');
   generationFolder.open();

@@ -75,12 +75,14 @@ var params = {
     },
 }
 
-  gui = new dat.GUI({
+gui = new dat.GUI({
     name: "City Options"
-  });
+});
 
-  selectCheck();
+selectCheck();
 
+var lightFolder = gui.addFolder('Light Options');
+lightFolder.open();
 
 function updateLight(val, light, ambientLight, params) {
     if (val >= Math.PI * 2) {

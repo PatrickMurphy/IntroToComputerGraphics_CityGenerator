@@ -21,16 +21,16 @@ var roadLocations = [];
 var genSteps = 20;
 
 function AddSquareRoad(x, y, z) {
-  var roadMesh = new THREE.Mesh(roadGeometry, roadMaterial);
-  roadMesh.receiveShadow = true;
-  roadMesh.castShadow = false;
+    var roadMesh = new THREE.Mesh(roadGeometry, roadMaterial);
+    roadMesh.receiveShadow = true;
+    roadMesh.castShadow = false;
 
-  roadMesh.position.y = y;
-  roadMesh.position.z = z;
-  roadMesh.position.x = x;
-  roadMesh.rotation.set(Math.PI / 2, 0, 0);
+    roadMesh.position.y = y;
+    roadMesh.position.z = z;
+    roadMesh.position.x = x;
+    roadMesh.rotation.set(Math.PI / 2, 0, 0);
 
-  scene.add(roadMesh);
+    scene.add(roadMesh);
 }
 
 function AddBuildingBase(x, y, z) {

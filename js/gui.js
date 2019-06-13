@@ -21,9 +21,6 @@ var params = {
         keyboardControls.enabled = !keyboardControls.enabled;
     },
 
-    generateWater: function () {
-        GenerateWater(genSteps);
-    },
     generate: function () {
         GenerateCity(genSteps);
     },
@@ -81,16 +78,14 @@ gui = new dat.GUI({
 
 selectCheck();
 
-  var lightFolder = gui.addFolder('Light Options');
-  lightFolder.open();
+var lightFolder = gui.addFolder('Light Options');
+lightFolder.open();
 
-  var lightController = lightFolder.add(params, 'light_angle', 0, Math.PI * 2).listen();
-  lightController.name("Hour / Angle");
-  lightController.onChange(function (val) {
-      updateLight(val, light, ambientLight, params);
-  });
-    
-  
+var lightController = lightFolder.add(params, 'light_angle', 0, Math.PI * 2).listen();;
+lightController.name("Angle");
+lightController.onChange(function (val) {
+    updateLight(val);
+});
 
 function updateLight(val) {
     if (val >= Math.PI * 2) {
@@ -112,7 +107,11 @@ function updateLight(val) {
     }
 }
 
-var lightIncreaseSpeedController = lightFolder.add(params, 'light_increase_speed', 0, 10, 0.1).listen();
+var lightIncreaseSpeedController = lightFolder.add(params, 'light_increase_speed', 0, 10, 0.1).listen();;
+lightIncreaseSpeedController.name("Light Increase Speed");
+lightIncreaseSpeedController.onChange(function (val) {
+    params.light_increase_speed = val;
+});
 
 window.setInterval(function () {
     updateLight(params.light_angle + (params.light_increase_speed / 100));
@@ -133,11 +132,11 @@ generationFolder.open();
 var genStepsController = generationFolder.add(params, 'walk_path_steps', 1, 50, 1);
 genStepsController.name("Generation Steps");
 genStepsController.onChange(function (val) {
-genSteps = val;
+    genSteps = val;
 });
 
 var genBtn = generationFolder.add(params, 'generate');
-genBtn.name("Add City");
+genBtn.name("Generate New City");
 genBtn.domElement.parentElement.parentElement.classList.add("focus-btn");
 
 //Controller settings, for example whether or not to use first person controls

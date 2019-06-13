@@ -9,4 +9,4 @@ function animate() {
     stats.end();
     requestAnimationFrame(animate);
 }
-requestAnimationFrame(animate); 
+requestAnimationFrame(animate);

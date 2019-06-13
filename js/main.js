@@ -1,60 +1,65 @@
 function CreateScene() {
-  scene.add(ambientLight);
-  scene.add(light);
+    scene.add(ambientLight);
+    scene.add(light);
 }
 
 CreateScene();
 
-
 //Generator Logic
 var update = function (moveSpeed) {
-  controls.update();
+    controls.update();
 
-  var time = performance.now();
-  var delta = (time - prevTime) / 1000;
+    var time = performance.now();
+    var delta = (time - prevTime) / 1000;
 
-  velocity.x -= velocity.x * 10.0 * delta;
-  velocity.z -= velocity.z * 10.0 * delta;
-  velocity.y -= velocity.y * 10.0 * delta;
+    velocity.x -= velocity.x * 10.0 * delta;
+    velocity.z -= velocity.z * 10.0 * delta;
+    velocity.y -= velocity.y * 10.0 * delta;
 
-  direction.z = Number(moveForward) - Number(moveBackward);
-  direction.x = Number(moveLeft) - Number(moveRight);
-  direction.y = Number(moveDown) - Number(moveUp);
+    direction.z = Number(moveForward) - Number(moveBackward);
+    direction.x = Number(moveLeft) - Number(moveRight);
+    direction.y = Number(moveDown) - Number(moveUp);
 
-  direction.normalize();
+    direction.normalize();
 
-  if (moveForward || moveBackward) velocity.z -= direction.z * moveSpeed * delta * (firstPersonMode ? 0.2 : 0.6);
-  if (moveLeft || moveRight) velocity.x -= direction.x * moveSpeed * delta * (firstPersonMode ? 0.2 : 0.6);
-  if (moveUp || moveDown) velocity.y -= direction.y * moveSpeed * delta * 0.2;
+    if (moveForward || moveBackward) {
+        velocity.z -= direction.z * moveSpeed * delta * (firstPersonMode ? 0.2 : 0.6);
+    }
+    if (moveLeft || moveRight) {
+        velocity.x -= direction.x * moveSpeed * delta * (firstPersonMode ? 0.2 : 0.6);
+    }
+    if (moveUp || moveDown) {
+        velocity.y -= direction.y * moveSpeed * delta * 0.2;
+    }
 
-  keyboardControls.getObject().translateX(velocity.x * delta);
-  keyboardControls.getObject().translateZ(velocity.z * delta);
-  keyboardControls.getObject().translateY(velocity.y * delta);
+    keyboardControls.getObject().translateX(velocity.x * delta);
+    keyboardControls.getObject().translateZ(velocity.z * delta);
+    keyboardControls.getObject().translateY(velocity.y * delta);
 
-  prevTime = time;
+    prevTime = time;
 };
 
 var render = function () {
-  //call the render with the scene and the camera
-  renderer.render(scene, camera);
+    //call the render with the scene and the camera
+    renderer.render(scene, camera);
 }
 
 //this fucntion is called when the window is resized
 var MyResize = function () {
-  var width = window.innerWidth;
-  var height = window.innerHeight;
-  renderer.setSize(width, height);
-  camera.aspect = width / height;
-  camera.updateProjectionMatrix();
-  renderer.render(scene, camera);
-  blockedWidth = width - 245;
+    var width = window.innerWidth;
+    var height = window.innerHeight;
+    renderer.setSize(width, height);
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
+    renderer.render(scene, camera);
+    blockedWidth = width - 245;
 };
 
 //Runs the game loop
 var GameLoop = function (moveSpeed) {
-  update(moveSpeed);
-  render();
-  requestAnimationFrame(GameLoop);
+    update(moveSpeed);
+    render();
+    requestAnimationFrame(GameLoop);
 }
 
 requestAnimationFrame(GameLoop);

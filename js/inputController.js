@@ -1,9 +1,3 @@
-function getMouseLocation(){
-  var mouse = new THREE.Vector2;
-  mouse.x = (event.clientX / renderer.domElement.clientWidth) * 2 - 1;
-  mouse.y = -(event.clientY / renderer.domElement.clientHeight) * 2 + 1;
-  return mouse;
-}
 //Controls
 var moveSpeed = 10;
 keyboardControls = new THREE.PointerLockControls(camera);
@@ -59,9 +53,7 @@ function onDocumentMouseDown(event) {
         case 1: //middle
             break;
         case 2: //right
-            var mouse = new THREE.Vector2;
-            mouse.x = (event.clientX / renderer.domElement.clientWidth) * 2 - 1;
-            mouse.y = -(event.clientY / renderer.domElement.clientHeight) * 2 + 1;
+            var mouse = getMouseLocation();
 
             selectedObject.material.color = selectedObjectColor;
             isSelected = false;

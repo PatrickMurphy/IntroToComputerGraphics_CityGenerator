@@ -1,6 +1,7 @@
-//create the scene
+//setup the scene
 var scene = new THREE.Scene();
 var ratio = window.innerWidth / window.innerHeight;
+
 var camera = new THREE.PerspectiveCamera(80, ratio, 4, 50000);
 
 var velocity = new THREE.Vector3();
@@ -26,20 +27,7 @@ var moveLeft = false;
 var moveRight = false;
 var moveUp = false;
 var moveDown = false;
-
-// first person state toggle
 var firstPersonMode = false;
-
-//Setup for road
-var roadSize = 20;
-
-//Setup for buildings and roads
-var buildingLocations = [];
-var roadLocations = [];
-
-//Amount of buildings to generate
-var genSteps = 20;
-
 
 //set the camera position
 var Pos = new THREE.Vector3(-360, 700, 360);
@@ -59,31 +47,6 @@ renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
 //add the renderer to the current document
 document.body.appendChild(renderer.domElement);
-
-//Controls
-var moveSpeed = 10;
-keyboardControls = new THREE.PointerLockControls(camera);
-controls = new THREE.OrbitControls(camera, renderer.domElement);
-controls.autoRotate = true;
-controls.autoRotateSpeed = 0;
-controls.dampingFactor = 1.5;
-camera.position = Pos;
-camera.lookAt(Dir);
-
-keyboardControls.enabled = false;
-scene.add(keyboardControls.getObject());
-
-
-//move this to the controls section, double check for duplica
-var raycaster = new THREE.Raycaster();
-var selectedObject = new THREE.Mesh();
-selected_building = selectedObject.name;
-var selectedObjectColor = new THREE.Color();
-var selectedObjectScale;
-var isSelected = false;
-
-var windowWidth = window.innerWidth;
-blockedWidth = windowWidth - 245;
 
 //Lighting Settings
 var ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.3);
@@ -163,10 +126,8 @@ var TextureL8 = loadTexture("./assets/img-ground/7.jpg");
 var TextureL9 = loadTexture("./assets/img-ground/8.jpg",50);
 
 var baseMaterial = new THREE.MeshPhongMaterial({
-  map: TextureL1,
-  // transparent: true,
-  //opacity: 0.8, //set the Transparency
-  side: THREE.DoubleSide
+    map: TextureL1,
+    side: THREE.DoubleSide
 });
 
 var baseGeometry = new THREE.PlaneGeometry(20000, 20000);
@@ -176,9 +137,14 @@ baseMesh.receiveShadow = true;
 baseMesh.castShadow = false;
 scene.add(baseMesh);
 
-// road geom and material
-var roadGeometry = new THREE.PlaneGeometry(roadSize, roadSize);
-var roadMaterial = new THREE.MeshPhongMaterial({
-  map: new THREE.TextureLoader().load("./assets/road/asphalt.png"),
-  side: THREE.DoubleSide
+document.getElementById("info-btn").addEventListener("click", function () {
+    var infoBtn = document.getElementById("info-btn");
+    var infoContent = document.getElementById("info-content");
+    if (infoContent.style.display === "none") {
+        infoContent.style.display = "block";
+        infoBtn.innerHTML = "[hide]";
+    } else {
+        infoContent.style.display = "none";
+        infoBtn.innerHTML = "[show]";
+    }
 });

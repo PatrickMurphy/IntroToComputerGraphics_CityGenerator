@@ -73,28 +73,6 @@ function AddRoads(x, y, z, width) {
   }
 }
 
-function textureT(xxx) {
-  if (xxx == 1) {
-    baseMaterial.map = TextureL1;
-  } else if (xxx == 2) {
-    baseMaterial.map = TextureL2;
-  } else if (xxx == 3) {
-    baseMaterial.map = TextureL3;
-  } else if (xxx == 4) {
-    baseMaterial.map = TextureL4;
-  } else if (xxx == 5) {
-    baseMaterial.map = TextureL5;
-  } else if (xxx == 6) {
-    baseMaterial.map = TextureL6;
-  } else if (xxx == 7) {
-    baseMaterial.map = TextureL7;
-  } else if (xxx == 8) {
-    baseMaterial.map = TextureL8;
-  } else if (xxx == 9) {
-    baseMaterial.map = TextureL9;
-  }
-}
-
 function AddLightPole(x, y, z) {
     var loader = new THREE.ObjectLoader();
     loader.load('./assets/lightpole/light-pole.json', function (obj) {

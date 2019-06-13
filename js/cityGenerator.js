@@ -1,3 +1,11 @@
+//Setup for road
+var roadSize = 20;
+var roadGeometry = new THREE.PlaneGeometry(roadSize, roadSize);
+var roadMaterial = new THREE.MeshPhongMaterial({
+    map: new THREE.TextureLoader().load("./assets/road/asphalt.png"),
+    side: THREE.DoubleSide
+});
+
 var buildingBaseSize = 80;
 var buildingBaseGeometry = new THREE.PlaneGeometry(buildingBaseSize, buildingBaseSize);
 var buildingBaseMaterial = new THREE.MeshPhongMaterial({
@@ -5,27 +13,12 @@ var buildingBaseMaterial = new THREE.MeshPhongMaterial({
     side: THREE.DoubleSide
 });
 
-function textureT(xxx) {
-  if (xxx == 1) {
-    baseMaterial.map = TextureL1;
-  } else if (xxx == 2) {
-    baseMaterial.map = TextureL2;
-  } else if (xxx == 3) {
-    baseMaterial.map = TextureL3;
-  } else if (xxx == 4) {
-    baseMaterial.map = TextureL4;
-  } else if (xxx == 5) {
-    baseMaterial.map = TextureL5;
-  } else if (xxx == 6) {
-    baseMaterial.map = TextureL6;
-  } else if (xxx == 7) {
-    baseMaterial.map = TextureL7;
-  } else if (xxx == 8) {
-    baseMaterial.map = TextureL8;
-  } else if (xxx == 9) {
-    baseMaterial.map = TextureL9;
-  }
-}
+//Setup for buildings and roads
+var buildingLocations = [];
+var roadLocations = [];
+
+//Amount of buildings to generate
+var genSteps = 20;
 
 function AddSquareRoad(x, y, z) {
   var roadMesh = new THREE.Mesh(roadGeometry, roadMaterial);
@@ -38,31 +31,6 @@ function AddSquareRoad(x, y, z) {
   roadMesh.rotation.set(Math.PI / 2, 0, 0);
 
   scene.add(roadMesh);
-}
-
-function AddLightPole(x, y, z) {
-    var loader = new THREE.ObjectLoader();
-    loader.load('./assets/lightpole/light-pole.json', function (obj) {
-        var combined = new THREE.Matrix4();
-        var scale = new THREE.Matrix4();
-        scale.makeScale(1, 1, 1);
-        combined.multiply(scale);
-
-        var rot = new THREE.Matrix4();
-        rot.makeRotationY(Math.PI / -2);
-        if (Math.round(Math.random()) == 0) {
-            rot.makeRotationY(Math.PI);
-        }
-        combined.multiply(rot);
-
-        obj.applyMatrix(combined);
-        obj.mesh
-        obj.position.y = y + 11;
-        obj.position.x = x * roadSize + 12;
-        obj.position.z = z * roadSize + 12;
-
-        scene.add(obj);
-    });
 }
 
 function AddBuildingBase(x, y, z) {
@@ -104,6 +72,54 @@ function AddRoads(x, y, z, width) {
     }
   }
 }
+
+function textureT(xxx) {
+  if (xxx == 1) {
+    baseMaterial.map = TextureL1;
+  } else if (xxx == 2) {
+    baseMaterial.map = TextureL2;
+  } else if (xxx == 3) {
+    baseMaterial.map = TextureL3;
+  } else if (xxx == 4) {
+    baseMaterial.map = TextureL4;
+  } else if (xxx == 5) {
+    baseMaterial.map = TextureL5;
+  } else if (xxx == 6) {
+    baseMaterial.map = TextureL6;
+  } else if (xxx == 7) {
+    baseMaterial.map = TextureL7;
+  } else if (xxx == 8) {
+    baseMaterial.map = TextureL8;
+  } else if (xxx == 9) {
+    baseMaterial.map = TextureL9;
+  }
+}
+
+function AddLightPole(x, y, z) {
+    var loader = new THREE.ObjectLoader();
+    loader.load('./assets/lightpole/light-pole.json', function (obj) {
+        var combined = new THREE.Matrix4();
+        var scale = new THREE.Matrix4();
+        scale.makeScale(1, 1, 1);
+        combined.multiply(scale);
+
+        var rot = new THREE.Matrix4();
+        rot.makeRotationY(Math.PI / -2);
+        if (Math.round(Math.random()) == 0) {
+            rot.makeRotationY(Math.PI);
+        }
+        combined.multiply(rot);
+
+        obj.applyMatrix(combined);
+        obj.mesh
+        obj.position.y = y + 11;
+        obj.position.x = x * roadSize + 12;
+        obj.position.z = z * roadSize + 12;
+
+        scene.add(obj);
+    });
+}
+
 
 function hasBuilding(x, z){
   var r = true;

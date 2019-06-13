@@ -24,9 +24,10 @@ blockedWidth = windowWidth - 245;
 function onDocumentMouseDown(event) {
     switch (event.button) {
         case 0: //left
-            var mouse = getMouseLocation();
-            
-			if (event.clientX < blockedWidth) {
+            var mouse = new THREE.Vector2;
+            mouse.x = (event.clientX / renderer.domElement.clientWidth) * 2 - 1;
+            mouse.y = -(event.clientY / renderer.domElement.clientHeight) * 2 + 1;
+            if (event.clientX < blockedWidth) {
                 raycaster.setFromCamera(mouse, camera);
 
                 var intersects = raycaster.intersectObjects(scene.children, false);

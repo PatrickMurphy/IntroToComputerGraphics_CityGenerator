@@ -39,26 +39,34 @@
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
 
+  <!-- the styling that our site uses -->
+  <link rel="stylesheet" href="style.css">
+
 
   <!-- include the three.js library -->
-  <script src="js/vendor/three.js"> </script>
+  <script type="text/javascript" src="js/vendor/three.js"> </script>
+
   <!-- include the trackball code -->
-  <script src="js/vendor/OrbitControls.js"> </script>
+  <script type="text/javascript" src="js/vendor/OrbitControls.js"> </script>
+
   <!-- include the model loader -->
-  <script src="js/vendor/PLYLoader.js"></script>
+  <script type="text/javascript" src="js/vendor/PLYLoader.js"></script>
+
   <!-- include the GUI -->
-  <script src="js/vendor/dat.gui.min.js"></script>
-  <!-- include the first person controls -->
-  <script src="js/vendor/PointerLockControls.js"></script>
+  <script type="text/javascript" src="js/vendor/dat.gui.min.js"></script>
+
   <!-- include performance stats -->
   <script type="text/javascript" src="js/vendor/stats.min.js"></script>
-  <!-- the styling that our site uses -->
-  <link rel="stylesheet" type="text/css" href="style.css">
+
+  <!-- include the first person controls -->
+  <script type="text/javascript" src="js/vendor/PointerLockControls.js"></script>
 </head>
 
 <body>
   <!-- The main information panel, shown in the top-left -->
   <div id="info-top">
+    <h1>Procedural City Generator</h1>
+
     <div id="info-content">
       <h3>Press the "Generate New" button to start!</h3>
 
@@ -70,14 +78,14 @@
         <li>Space to fly up</li>
         <li>Left shift to fly down</li>
       </ul>
-
+  
       <h4>Building Controls</h4>
       <ul>
         <li>Left Click to select</li>
         <li>Right Click to de-select</li>
         <li>Left Click again to move the building</li>
       </ul>
-
+  
       <a href="https://github.com/MHillier98/IntroToComputerGraphics_CityGenerator/graphs/contributors">
         <h3>Made By:</h3>
       </a>
@@ -89,13 +97,20 @@
         <li>Longyong Li</li>
       </ul>
     </div>
+
     <span id="info-btn" class="btn">[hide]</span>
+
   </div>
 
+  <!--
+    Remove me (and related) before submitting assignment :P
+    Hi to the marker if we forgot *waves* \o/
+  -->
   <div id="info-bottom-right">
-    <a href="https://github.com/PatrickMurphy/IntroToComputerGraphics_CityGenerator">
-      <img alt="View on Github" src="https://mhillier98.github.io/IntroToComputerGraphics_CityGenerator/assets/img-misc/ViewOnGitHub.png" height="32px">
-    </a>
+    <a href="https://github.com/MHillier98/IntroToComputerGraphics_CityGenerator">
+      <img alt="View on Github"
+        src="https://mhillier98.github.io/IntroToComputerGraphics_CityGenerator/assets/img-misc/ViewOnGitHub.png"
+        height="32px"></a>
   </div>
 
   <!-- Setup the City Generator -->

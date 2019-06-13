@@ -85,7 +85,7 @@ function updateLight(val, light, ambientLight, params) {
     light.position.x = Math.cos(val) * 1000;
     var lightVal = Math.abs(Math.sin(val));
     light.color = new THREE.Color(1, lightVal, lightVal);
-      
+
     if (val >= Math.PI) {
         light.intensity = 0;
         ambientLight.intensity = 0.1;
@@ -93,7 +93,7 @@ function updateLight(val, light, ambientLight, params) {
         light.intensity = 0.25 + 0.25 * lightVal;
         ambientLight.intensity = 0.1 + 0.2 * lightVal;
     }
-  }
+}
 
 function buildGui() {
   gui = new dat.GUI({
@@ -134,30 +134,40 @@ function buildGui() {
 var lightIncreaseSpeedController = lightFolder.add(params, 'light_increase_speed', 0, 10, 0.1).listen();
 lightIncreaseSpeedController.name("Light Increase Speed");
 lightIncreaseSpeedController.onChange(function (val) {
-  params.light_increase_speed = val;
+    params.light_increase_speed = val;
 });
 
-
-var cameraFolder = gui.addFolder('Camera Options');
-//cameraFolder.open();
-
-var cameraSpeedController = cameraFolder.add(params, 'camera_rotate_speed', 0, 5, 0.1);
-cameraSpeedController.name("Rotate Speed");
-cameraSpeedController.onChange(function (val) {
-  controls.autoRotateSpeed = val;
-});
-  
 window.setInterval(function () {
-  updateLight(params.light_angle + (params.light_increase_speed/100),light, ambientLight, params);
+    updateLight(params.light_angle + (params.light_increase_speed / 100));
 }, 30);
 
+var cameraFolder = gui.addFolder('Camera Options');
+cameraFolder.open();
 
+var cameraSpeedController = cameraFolder.add(params, 'camera_rotate_speed', 0, 5, 0.1);
+cameraSpeedController.name("Camera Rotation Speed");
+cameraSpeedController.onChange(function (val) {
+    controls.autoRotateSpeed = val;
+});
+
+var generationFolder = gui.addFolder('Generation Options');
+generationFolder.open();
+
+var genStepsController = generationFolder.add(params, 'walk_path_steps', 1, 50, 1);
+genStepsController.name("Generation Steps");
+genStepsController.onChange(function (val) {
+    genSteps = val;
+});
+
+var genBtn = generationFolder.add(params, 'generate');
+genBtn.name("Generate New City");
 
 //Controller settings, for example whether or not to use first person controls
-var controlsFolder = gui.addFolder('Control Options');
-controlsFolder.open();
-var ctrlBtnFP = controlsFolder.add(params, 'firstPerson');
-ctrlBtnFP.name("First Person Mode");
+// TODO: FIX THIS!
+//var controlsFolder = gui.addFolder('Control Options');
+//controlsFolder.open();
+//var ctrlBtnFP = controlsFolder.add(params, 'firstPerson');
+//ctrlBtnFP.name("First Person Mode");
 // var ctrlBtnDay = controlsFolder.add(params, 'day');
 // ctrlBtnDay.name("Set time day");
 // var ctrlBtnNight = controlsFolder.add(params, 'night');
@@ -217,7 +227,7 @@ genBtn88.name("Ground8");
 
 var genBtn99 = generationFolder11.add(params, 'generate99');
 genBtn99.name("Ground9");
-}
+
 
 function selectCheck() {
     if (isSelected == true) {
@@ -226,8 +236,7 @@ function selectCheck() {
 
         var files = [1, 2, 3, 4, 5, 6, 7, 8];
 
-        var buildingController = buildingFolder.add(params, 'selected_building', ['Model 1', 'Model 2', 'Model 3', 'Model 4', 'Model 5', 'Model 6', 'Model 7', 'Model 8'
-        ]).listen();
+        var buildingController = buildingFolder.add(params, 'selected_building', ['Model 1', 'Model 2', 'Model 3', 'Model 4', 'Model 5', 'Model 6', 'Model 7', 'Model 8']).listen();
         buildingController.name("Building Model");
 
         var paramcolor = {
@@ -245,27 +254,25 @@ function selectCheck() {
         });
     }
 }
-buildGui();
-
 
 function textureT(xxx) {
     if (xxx == 1) {
-      baseMaterial.map = TextureL1;
+        baseMaterial.map = TextureL1;
     } else if (xxx == 2) {
-      baseMaterial.map = TextureL2;
+        baseMaterial.map = TextureL2;
     } else if (xxx == 3) {
-      baseMaterial.map = TextureL3;
+        baseMaterial.map = TextureL3;
     } else if (xxx == 4) {
-      baseMaterial.map = TextureL4;
+        baseMaterial.map = TextureL4;
     } else if (xxx == 5) {
-      baseMaterial.map = TextureL5;
+        baseMaterial.map = TextureL5;
     } else if (xxx == 6) {
-      baseMaterial.map = TextureL6;
+        baseMaterial.map = TextureL6;
     } else if (xxx == 7) {
-      baseMaterial.map = TextureL7;
+        baseMaterial.map = TextureL7;
     } else if (xxx == 8) {
-      baseMaterial.map = TextureL8;
+        baseMaterial.map = TextureL8;
     } else if (xxx == 9) {
-      baseMaterial.map = TextureL9;
+        baseMaterial.map = TextureL9;
     }
 }

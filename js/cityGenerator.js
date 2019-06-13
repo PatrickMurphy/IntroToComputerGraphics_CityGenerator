@@ -98,17 +98,6 @@ function AddLightPole(x, y, z) {
     });
 }
 
-
-function hasBuilding(x, z){
-  var r = true;
-  for (var b = 0; b < buildingLocations.length; b++) {
-    if (buildingLocations[b].buildingX == x && buildingLocations[b].buildingZ == z) {
-      r = false;
-    }
-  }
-  return r;
-}
-
 function AddBuilding(startingX, startingZ, randomX, randomZ, stepsLeft) {
     var buildingWidth = 1.5 + (Math.random() * 1);
     var buildingHeight = 1 + (Math.random() * (stepsLeft / 6));
@@ -117,65 +106,73 @@ function AddBuilding(startingX, startingZ, randomX, randomZ, stepsLeft) {
     var buildingY = (buildingHeight / 2);
     var buildingZ = (startingZ + randomZ) * 20 * 5;
 
-    var freeSpace = hasBuilding(buildingX, buildingZ);
+    var freeSpace = true;
+
+    for (var b = 0; b < buildingLocations.length; b++) {
+        if (buildingLocations[b].buildingX == buildingX && buildingLocations[b].buildingZ == buildingZ) {
+            freeSpace = false;
+        }
+    }
 
     if (freeSpace) {
-      buildingLocations.push({
-        buildingX,
-        buildingZ
-      });
+        buildingLocations.push({
+            buildingX,
+            buildingZ
+        });
 
-      var isWideRand = Math.floor(Math.random() * 30) + 1;
-      var isParkRand = Math.floor(Math.random() * 30) + 1;
+        var isWideRand = Math.floor(Math.random() * 30) + 1;
 
-      var wideBuildingWidth = 0;
-      var wideBuildingDepth = 0;
+        var wideBuildingWidth = 0;
+        var wideBuildingDepth = 0;
 
-      if(isParkRand < 12){
-        for (var i = 0; i < 2; i++) {
-          for (var k = 0; k < 3; k++) {
-            if(hasBuilding(buildingX+(i*100),buildingZ+(k*100))){   
-              var newZ = buildingZ+(k*100);  
-              var newX = buildingX+(i*100);   
-              buildingLocations.push({newX,newZ});
-            }
-          }
-        }
-      }else{
         if (isWideRand < 5) {
-            var freeSpaceAdj = hasBuilding(buildingX + 100,buildingZ);
+            var freeSpaceAdj = true;
+
+            for (var b = 0; b < buildingLocations.length; b++) {
+                if (buildingLocations[b].buildingX == buildingX + 100 && buildingLocations[b].buildingZ == buildingZ) {
+                    freeSpaceAdj = false;
+                }
+            }
 
             if (freeSpaceAdj) {
                 wideBuildingWidth = buildingWidth;
                 buildingX += 100;
 
                 buildingLocations.push({
-                  buildingX,
-                  buildingZ
+                    buildingX,
+                    buildingZ
                 });
                 buildingX -= 50;
-                AddBuildingBase(buildingX + 50, 0.105, buildingZ);
-                  AddBuildingBase(buildingX, 0.105, buildingZ);
-                  AddBuildingBase(buildingX - 50, 0.105, buildingZ);
             }
+
+            AddBuildingBase(buildingX + 50, 1.1, buildingZ);
+            AddBuildingBase(buildingX, 1.1, buildingZ);
+            AddBuildingBase(buildingX - 50, 1.1, buildingZ);
         } else if (isWideRand > 25) {
-            var freeSpaceAdj = hasBuilding(buildingX,buildingZ + 100);
+            var freeSpaceAdj = true;
+
+            for (var b = 0; b < buildingLocations.length; b++) {
+                if (buildingLocations[b].buildingZ == buildingZ + 100 && buildingLocations[b].buildingX == buildingX) {
+                    freeSpaceAdj = false;
+                }
+            }
 
             if (freeSpaceAdj) {
                 wideBuildingDepth = buildingWidth;
                 buildingZ += 100;
 
                 buildingLocations.push({
-                  buildingX,
-                  buildingZ
+                    buildingX,
+                    buildingZ
                 });
                 buildingZ -= 50;
-                AddBuildingBase(buildingX, 0.105, buildingZ - 50);
-                  AddBuildingBase(buildingX, 0.105, buildingZ);
-                  AddBuildingBase(buildingX, 0.105, buildingZ + 50);
             }
-        }else{
-            AddBuildingBase(buildingX, 0.11, buildingZ);
+
+            AddBuildingBase(buildingX, 1.1, buildingZ - 50);
+            AddBuildingBase(buildingX, 1.1, buildingZ);
+            AddBuildingBase(buildingX, 1.1, buildingZ + 50);
+        } else {
+            AddBuildingBase(buildingX, 1.1, buildingZ);
         }
 
         var baseColor = 0.19 + (Math.random() * 0.81);
@@ -190,8 +187,7 @@ function AddBuilding(startingX, startingZ, randomX, randomZ, stepsLeft) {
             buildingX,
             buildingY,
             buildingZ
-          );
-        }
+        );
     }
 }
 
@@ -210,10 +206,8 @@ function AddBuild(model, r, g, b, width, height, depth, xTra, yTra, zTra) {
         geometry.computeBoundingBox();
 
         var size = geometry.boundingBox.getSize();
-
         var sca = new THREE.Matrix4();
         var combined = new THREE.Matrix4();
-
         sca.makeScale(2 * size.length() * width, 2 * size.length() * height, 2 * size.length() * depth);
 
         combined.multiply(sca);
@@ -264,8 +258,4 @@ function GenerateCity(steps) {
     for (var x = 0; x < steps; x++) {
         RandomWalk(0, 0, x, 5);
     }
-}
-
-function GenerateWater(steps){
-    // nothing yet
 }

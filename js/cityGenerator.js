@@ -51,24 +51,24 @@ function AddRoads(x, y, z, width) {
 
     for (var b = 0; b < roadLocations.length; b++) {
         if (roadLocations[b].x == x && roadLocations[b].z == z) {
-          freeSpace = false;
+            freeSpace = false;
         }
     }
 
     if (freeSpace) {
         roadLocations.push({
-          x,
-          z
+            x,
+            z
         });
         
         AddLightPole(x, y, z);
         
         for (var w = 0; w < width; w++) {
-          AddSquareRoad((w + x) * roadSize, y, z * roadSize);
+            AddSquareRoad((w + x) * roadSize, y, z * roadSize);
         }
 
         for (var q = 0; q < width; q++) {
-          AddSquareRoad(x * roadSize, y, (q + z) * roadSize);
+            AddSquareRoad(x * roadSize, y, (q + z) * roadSize);
         }
     }
 }
@@ -146,33 +146,33 @@ function AddBuilding(startingX, startingZ, randomX, randomZ, stepsLeft) {
             var freeSpaceAdj = hasBuilding(buildingX + 100,buildingZ);
 
             if (freeSpaceAdj) {
-              wideBuildingWidth = buildingWidth;
-              buildingX += 100;
+                wideBuildingWidth = buildingWidth;
+                buildingX += 100;
 
-              buildingLocations.push({
-                buildingX,
-                buildingZ
-              });
-              buildingX -= 50;
-              AddBuildingBase(buildingX + 50, 0.105, buildingZ);
-                AddBuildingBase(buildingX, 0.105, buildingZ);
-                AddBuildingBase(buildingX - 50, 0.105, buildingZ);
+                buildingLocations.push({
+                  buildingX,
+                  buildingZ
+                });
+                buildingX -= 50;
+                AddBuildingBase(buildingX + 50, 0.105, buildingZ);
+                  AddBuildingBase(buildingX, 0.105, buildingZ);
+                  AddBuildingBase(buildingX - 50, 0.105, buildingZ);
             }
         } else if (isWideRand > 25) {
             var freeSpaceAdj = hasBuilding(buildingX,buildingZ + 100);
 
             if (freeSpaceAdj) {
-              wideBuildingDepth = buildingWidth;
-              buildingZ += 100;
+                wideBuildingDepth = buildingWidth;
+                buildingZ += 100;
 
-              buildingLocations.push({
-                buildingX,
-                buildingZ
-              });
-              buildingZ -= 50;
-              AddBuildingBase(buildingX, 0.105, buildingZ - 50);
-                AddBuildingBase(buildingX, 0.105, buildingZ);
-                AddBuildingBase(buildingX, 0.105, buildingZ + 50);
+                buildingLocations.push({
+                  buildingX,
+                  buildingZ
+                });
+                buildingZ -= 50;
+                AddBuildingBase(buildingX, 0.105, buildingZ - 50);
+                  AddBuildingBase(buildingX, 0.105, buildingZ);
+                  AddBuildingBase(buildingX, 0.105, buildingZ + 50);
             }
         }else{
             AddBuildingBase(buildingX, 0.11, buildingZ);
@@ -209,21 +209,14 @@ function AddBuild(model, r, g, b, width, height, depth, xTra, yTra, zTra) {
 
         geometry.computeBoundingBox();
 
-        //var center = geometry.boundingBox.getCenter();
         var size = geometry.boundingBox.getSize();
 
         var sca = new THREE.Matrix4();
-        //var tra = new THREE.Matrix4();
-        //var rot = new THREE.Matrix4();
         var combined = new THREE.Matrix4();
 
         sca.makeScale(2 * size.length() * width, 2 * size.length() * height, 2 * size.length() * depth);
-        //tra.makeTranslation (center.x + xTra, center.y + yTra, center.z + zTra);
-        //rot.makeRotationX(- Math.PI / 2);
 
         combined.multiply(sca);
-        //combined.multiply(tra);
-        //combined.multiply(rot);
 
         mesh.applyMatrix(combined);
         mesh.castShadow = true;

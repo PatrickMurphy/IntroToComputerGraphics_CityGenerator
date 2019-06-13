@@ -21,12 +21,19 @@ var isSelected = false;
 var windowWidth = window.innerWidth;
 blockedWidth = windowWidth - 245;
 
+function getMouseLocation(){
+    var mouse = new THREE.Vector2;
+    mouse.x = (event.clientX / renderer.domElement.clientWidth) * 2 - 1;
+    mouse.y = -(event.clientY / renderer.domElement.clientHeight) * 2 + 1;
+
+    return mouse;
+}
+
 function onDocumentMouseDown(event) {
     switch (event.button) {
         case 0: //left
-            var mouse = new THREE.Vector2;
-            mouse.x = (event.clientX / renderer.domElement.clientWidth) * 2 - 1;
-            mouse.y = -(event.clientY / renderer.domElement.clientHeight) * 2 + 1;
+            var mouse getMouseLocation(); // use helper function to eliminate redundant coude
+
             if (event.clientX < blockedWidth) {
                 raycaster.setFromCamera(mouse, camera);
 
@@ -54,7 +61,7 @@ function onDocumentMouseDown(event) {
         case 1: //middle
             break;
         case 2: //right
-            var mouse = getMouseLocation();
+            var mouse = getMouseLocation();  // use helper function to eliminate redundant coude // this is probably not even needed in mb2
 
             selectedObject.material.color = selectedObjectColor;
             isSelected = false;

@@ -9,14 +9,11 @@ var direction = new THREE.Vector3();
 var prevTime = performance.now();
 
 var settings = {
+  gui:{
+    highlightGenerateBtn: true
+  },
   infowindows:{
-    autohide:false,
-    authors:{
-      autohide:true
-    },
-    controls:{
-      autohide:false
-    }
+    autohide:false
   }
 };
 
@@ -148,3 +145,8 @@ document.getElementById("info-btn").addEventListener("click", function () {
         infoBtn.innerHTML = "[show]";
     }
 });
+
+// auto hide info panel option
+if(settings.infowindows.autohide){
+    document.getElementById("info-content").style.display = "none";
+}

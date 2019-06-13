@@ -137,7 +137,11 @@ genStepsController.onChange(function (val) {
 
 var genBtn = generationFolder.add(params, 'generate');
 genBtn.name("Generate New City");
-genBtn.domElement.parentElement.parentElement.classList.add("focus-btn");
+
+if(settings.gui.highlightGenerateBtn){
+    // Added by Patrick Murphy: Highlight gen button so people can find it easier
+    genBtn.domElement.parentElement.parentElement.classList.add("focus-btn");
+}
 
 //Controller settings, for example whether or not to use first person controls
 // TODO: FIX THIS!

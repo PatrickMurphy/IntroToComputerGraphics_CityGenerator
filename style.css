@@ -68,6 +68,7 @@ a {
     width: 330px !important;
 }
 
+/* Style for highlight button */
 .focus-btn {
   background: #55aa55 !important;
   font-weight: bold;
